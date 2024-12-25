@@ -5,7 +5,7 @@ const nextConfig = {
     unoptimized: true, // Disable default image optimization
   },
   assetPrefix: isProd ? '/sizzlie/' : '',
-  basePath: isProd ? '/sizzlie/' : '',
+  basePath: isProd ? '/sizzlie' : '',
   output: 'export'
 };
 
