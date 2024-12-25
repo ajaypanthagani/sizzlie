@@ -15,6 +15,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<Recipe>) => {
+      console.log(action.payload.id)
       const existingItem = state.items.find(
         (item) => item.recipe.id === action.payload.id
       );
@@ -27,28 +28,25 @@ const cartSlice = createSlice({
         state.items.push({ recipe: action.payload, quantity: 1 });
       }
     },
-    removeFromCart: (state, action: PayloadAction<string>) => {
-      const itemTitle = action.payload;
-      state.items = state.items.filter((item) => item.recipe.title !== itemTitle);
-    },
-    increaseQuantity: (state, action: PayloadAction<string>) => {
-      const item = state.items.find((item) => item.recipe.title === action.payload);
-      if (item) {
-        item.quantity += 1;
+    removeFromCart: (state, action: PayloadAction<number>) => {
+      const itemId = action.payload;
+
+      const existingItem = state.items.find(
+        (item) => item.recipe.id === itemId
+      );
+
+      if (existingItem) {
+        if (existingItem.quantity > 1) {
+          existingItem.quantity -= 1;
+        } else {
+          state.items = state.items.filter((item) => item.recipe.id !== itemId);
+        }
       }
-    },
-    decreaseQuantity: (state, action: PayloadAction<string>) => {
-      const item = state.items.find((item) => item.recipe.title === action.payload);
-      if (item && item.quantity > 1) {
-        item.quantity -= 1;
-      } else {
-        state.items = state.items.filter((item) => item.recipe.title !== action.payload);
-      }
-    },
+    }
   },
 });
 
-export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity } =
+export const { addToCart, removeFromCart} =
   cartSlice.actions;
 
 export default cartSlice.reducer;

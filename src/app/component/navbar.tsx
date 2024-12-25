@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
     <nav className="bg-white shadow-md fixed top-0 left-0 w-full z-20 mb-5">
       <div className="flex flex-col md:flex-row justify-between items-center p-4">
         <Link href="/">
-        <h1 className="text-2xl font-bold text-red-500 mb-4 md:mb-0">Frec</h1>
+        <h1 className="text-2xl font-bold text-red-500 mb-4 md:mb-0">Sizzlie</h1>
         </Link>
         <div className="flex items-center w-full md:w-auto justify-between">
           <input
