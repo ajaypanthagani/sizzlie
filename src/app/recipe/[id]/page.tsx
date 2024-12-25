@@ -2,7 +2,7 @@
 
 import { recipes } from "@/app/data/recipe";
 import { useParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick"; // For carousel
 import { FaClock } from "react-icons/fa"; // For clock icon
 
@@ -15,29 +15,76 @@ const RecipeInstructionsPage: React.FC = () => {
   // Find the recipe based on the parsed id
   const recipe = recipes.find((recipe) => recipe.id === recipeId);
 
-  // State to manage the active timer
   const [activeTimer, setActiveTimer] = useState<number | null>(null);
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
 
-  // Function to start the timer
+  const calculateTimeLeft = (endTime: number) => {
+    const now = Date.now();
+    return Math.max(0, Math.floor((endTime - now) / 1000));
+  };
+
   const startTimer = (seconds: number, index: number) => {
+    const endTime = Date.now() + seconds * 1000;
+    localStorage.setItem(`timer_${index}`, endTime.toString());
     setActiveTimer(index);
     setTimeLeft(seconds);
 
+    // Immediately start the countdown
     const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev && prev > 1) {
-          return prev - 1;
+      setTimeLeft(() => {
+        const remaining = calculateTimeLeft(endTime);
+        if (remaining > 0) {
+          return remaining;
         } else {
           clearInterval(interval);
           setActiveTimer(null);
+          localStorage.removeItem(`timer_${index}`);
           return null;
         }
       });
     }, 1000);
   };
 
-  // If no recipe is found, display a not found message
+  useEffect(() => {
+    // Restore any active timers from localStorage on component mount
+    const intervals: NodeJS.Timeout[] = [];
+
+    recipe?.instructions.forEach((_, index) => {
+      const storedEndTime = localStorage.getItem(`timer_${index}`);
+      if (storedEndTime) {
+        const endTime = parseInt(storedEndTime, 10);
+        const remaining = calculateTimeLeft(endTime);
+
+        if (remaining > 0) {
+          setActiveTimer(index);
+          setTimeLeft(remaining);
+
+          // Start interval to update the countdown
+          const interval = setInterval(() => {
+            const newRemaining = calculateTimeLeft(endTime);
+            if (newRemaining > 0) {
+              setTimeLeft(newRemaining);
+            } else {
+              clearInterval(interval);
+              localStorage.removeItem(`timer_${index}`);
+              setActiveTimer(null);
+              setTimeLeft(null);
+            }
+          }, 1000);
+
+          intervals.push(interval);
+        } else {
+          localStorage.removeItem(`timer_${index}`);
+        }
+      }
+    });
+
+    // Cleanup intervals on unmount
+    return () => {
+      intervals.forEach(clearInterval);
+    };
+  }, [recipe]);
+
   if (!recipe) {
     return (
       <div>
@@ -46,7 +93,6 @@ const RecipeInstructionsPage: React.FC = () => {
     );
   }
 
-  // Carousel settings
   const carouselSettings = {
     dots: true,
     infinite: false,
@@ -60,17 +106,12 @@ const RecipeInstructionsPage: React.FC = () => {
   return (
     <div className="z-0 p-4 fixed inset-0 bg-gray-100 overflow-y-auto">
       <div className="recipe-instructions-page mt-32 lg:mt-16 md:mt-16 p-5">
-        {/* Carousel to render the instructions */}
-        <Slider
-          {...carouselSettings}
-          className="carousel-container"
-        >
+        <Slider {...carouselSettings} className="carousel-container">
           {recipe.instructions.map((instruction, index) => (
             <div
               key={index}
               className="carousel-item flex flex-col justify-center items-center relative"
             >
-              {/* Display Video */}
               <div className="instruction-video flex justify-center items-center mb-4 w-full">
                 <video
                   controls
@@ -78,8 +119,6 @@ const RecipeInstructionsPage: React.FC = () => {
                   src={instruction.videoUrl}
                 />
               </div>
-
-              {/* Display Description */}
               <div className="instruction-description flex justify-between items-center w-full p-4 bg-black bg-opacity-60 text-white rounded-md mt-auto">
                 <div className="flex-1">
                   <h2 className="text-lg text-red-300">{`Step ${index + 1}`}</h2>
