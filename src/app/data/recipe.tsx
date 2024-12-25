@@ -21,7 +21,7 @@ export const recipes: Recipe[] = [{
         {
             videoUrl:"/put-in-over.mp4",
             description:"put in oven",
-            time: 60
+            time: 5
         },
     ]
   },
