@@ -8,5 +8,6 @@ export default interface Recipe {
     price: number;
     rating: number;
     isAvailable: boolean;
+    instructions: { videoUrl: string; description: string; time?: number }[];  // New instructions field
   }
   

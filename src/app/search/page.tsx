@@ -43,6 +43,7 @@ const SearchPage: React.FC = () => {
                     price={recipe.price}
                     rating={recipe.rating}
                     isAvailable={recipe.isAvailable}
+                    instructions={[]}
                 />
             ))}
         </div>

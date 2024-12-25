@@ -1,4 +1,6 @@
-export const recipes = [{
+import Recipe from "../model/recipe";
+
+export const recipes: Recipe[] = [{
     id: 1,
     title: "Truffle Pasta",
     imgSrc: "/truffle-pasta.jpg",
@@ -7,6 +9,20 @@ export const recipes = [{
     price: 10.5,
     rating: 4.8,
     isAvailable: true,
+    instructions:[
+        {
+            videoUrl:"/cut-chicken.mp4",
+            description:"cut chicken",
+        },
+        {
+            videoUrl:"/add-seasoning.mp4",
+            description:"add seasoning",
+        },
+        {
+            videoUrl:"/put-in-over.mp4",
+            description:"put in oven",
+        }
+    ]
   },
   {
     id: 2,
@@ -17,6 +33,7 @@ export const recipes = [{
     price: 10.20,
     rating: 4.8,
     isAvailable: true,
+    instructions:[]
   },
   {
     id: 3,
@@ -27,6 +44,7 @@ export const recipes = [{
     price: 8.99,
     rating: 4.8,
     isAvailable: true,
+    instructions:[]
   },
   {
     id: 4,
@@ -37,4 +55,5 @@ export const recipes = [{
     price: 5,
     rating: 4.8,
     isAvailable: false,
+    instructions:[]
   }]
