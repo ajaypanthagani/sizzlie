@@ -15,7 +15,7 @@ const HeroBanner: React.FC = () => {
 
       {/* Overlay Content */}
       <div className="relative z-0 bg-gradient-to-r from-black/50 to-transparent text-white p-6 h-full flex flex-col justify-center">
-        <h1 className="text-3xl md:text-5xl font-bold mb-4">Welcome to Frec</h1>
+        <h1 className="text-3xl md:text-5xl font-bold mb-4">Welcome to Sizzlie</h1>
         <p className="text-sm md:text-lg">
           Explore trending recipes, snacks, and your favorite meals. Dive into the world of food!
         </p>
