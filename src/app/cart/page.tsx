@@ -32,6 +32,8 @@ const CartPage: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
                     <Image
+                      width={200}
+                      height={200}
                       src={item.recipe.imgSrc}
                       alt={item.recipe.title}
                       className="w-16 h-16 object-cover rounded-lg"

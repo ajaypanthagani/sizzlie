@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 import { FaShoppingCart } from "react-icons/fa";
+import Search from './search';
+
 
 const Navbar: React.FC = () => {
   return (
@@ -10,11 +12,7 @@ const Navbar: React.FC = () => {
         <h1 className="text-2xl font-bold text-red-500 mb-4 md:mb-0">Sizzlie</h1>
         </Link>
         <div className="flex items-center w-full md:w-auto justify-between">
-          <input
-            type="text"
-            placeholder="Search"
-            className="border rounded-full px-4 py-1 w-full md:w-2/3"
-          />
+          <Search></Search>
           <Link
             href="/cart"
             className="bg-red-500 text-white px-8 py-2 rounded-md hover:bg-red-600 transition duration-200 ml-4"

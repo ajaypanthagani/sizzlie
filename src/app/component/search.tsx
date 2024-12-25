@@ -1,16 +1,26 @@
-import React from 'react';
+"use client";
 
-interface SearchProps {
-  onSearch: (arg: string) => void
-}
+import { useRouter } from "next/navigation";
 
-const Search: React.FC<SearchProps> = ({ onSearch }) => {
+const Search: React.FC = () => {
+  const router = useRouter();
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const term = event.target.value;
+
+    if (term === "") {
+      router.replace('/');
+    } else {
+      router.replace(`/search?query=${term}`);
+    }
+  };
+
   return (
     <input
       type="text"
-      placeholder="Search..."
-      onChange={(e) => onSearch(e.target.value)}
-      className='relative rounded-full bg-white px-2 border-4 border-black w-full'
+      placeholder="Search"
+      className="border rounded-full px-4 py-1 w-full md:w-2/3 text-gray-700"
+      onChange={handleSearch}
     />
   );
 };
