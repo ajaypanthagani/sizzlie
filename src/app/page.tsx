@@ -48,7 +48,7 @@ const recipes = [{
 const Home: React.FC = () => {
   return (
         <div className="z-0 p-4 fixed inset-0 h-screen bg-gray-100 overflow-y-auto">
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-4 h-80">
+        <div className="mt-32 lg:mt-16 md:mt-16 grid grid-cols-1 lg:grid-cols-3 gap-4 h-80">
           <div className="lg:col-span-2 flex flex-grow">
             <Hero />
           </div>
