@@ -23,6 +23,11 @@ const RecipeInstructionsPage: React.FC = () => {
     return Math.max(0, Math.floor((endTime - now) / 1000));
   };
 
+  const playAlarm = () => {
+    const audio = new Audio("/alarm.mp3"); // Path to your alarm sound
+    audio.play().catch((error) => console.error("Error playing alarm:", error));
+  };
+
   const startTimer = (seconds: number, index: number) => {
     const endTime = Date.now() + seconds * 1000;
     localStorage.setItem(`timer_${index}`, endTime.toString());
@@ -39,6 +44,7 @@ const RecipeInstructionsPage: React.FC = () => {
           clearInterval(interval);
           setActiveTimer(null);
           localStorage.removeItem(`timer_${index}`);
+          playAlarm(); // Play the alarm sound when the timer ends
           return null;
         }
       });
@@ -67,6 +73,7 @@ const RecipeInstructionsPage: React.FC = () => {
             } else {
               clearInterval(interval);
               localStorage.removeItem(`timer_${index}`);
+              playAlarm(); // Play the alarm sound when the timer ends
               setActiveTimer(null);
               setTimeLeft(null);
             }
