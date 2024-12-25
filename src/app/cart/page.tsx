@@ -4,6 +4,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { addToCart, removeFromCart } from "../redux/cartSlice";
+import Image from "next/image";
 
 const CartPage: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -30,7 +31,7 @@ const CartPage: React.FC = () => {
                 {/* Top Section */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
-                    <img
+                    <Image
                       src={item.recipe.imgSrc}
                       alt={item.recipe.title}
                       className="w-16 h-16 object-cover rounded-lg"
