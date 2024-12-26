@@ -47,22 +47,23 @@ const RecipeCard: React.FC<Recipe> = (recipe: Recipe) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 flex flex-col h-full">
-      <Link href={recipe.isAvailable ? `/recipe/${recipe.id}` : "#"}></Link>
-      {/* Image Section */}
-      <div className="relative w-full h-48">
-        <Image
-          src={recipe.imgSrc}
-          alt={recipe.title}
-          layout="fill"
-          objectFit="cover"
-          className="rounded-t-lg"
-        />
-        {!recipe.isAvailable && (
-          <div className="absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
-            <span className="text-white text-lg font-semibold">Unavailable</span>
+      <Link href={recipe.isAvailable ? `/recipe/${recipe.id}` : "#"}>
+          {/* Image Section */}
+          <div className="relative w-full h-48">
+            <Image
+              src={recipe.imgSrc}
+              alt={recipe.title}
+              layout="fill"
+              objectFit="cover"
+              className="rounded-t-lg"
+            />
+            {!recipe.isAvailable && (
+              <div className="absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+                <span className="text-white text-lg font-semibold">Unavailable</span>
+              </div>
+            )}
           </div>
-        )}
-      </div>
+      </Link>
 
       {/* Content Section */}
       <div className="p-4 flex flex-col flex-grow">
