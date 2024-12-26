@@ -11,6 +11,31 @@ export const recipes: Recipe[] = [{
     isAvailable: true,
     instructions:[
         {
+            videoUrl:"/sizzlie/grate-truffle.mp4",
+            description:"grate truffle",
+        },
+        {
+            videoUrl:"/sizzlie/saute-garlic.mp4",
+            description:"saute garlic",
+        },
+        {
+            videoUrl:"/sizzlie/toss-pasta.mp4",
+            description:"toss pasta",
+            time: 5
+        },
+    ]
+  },
+  {
+    id: 2,
+    title: "Chicken Tikka",
+    imgSrc: "/sizzlie/chicken-tikka.jpg",
+    description: "A flavorful Indian dish of marinated chicken pieces grilled to perfection.",
+    currency: "$",
+    price: 10.20,
+    rating: 4.8,
+    isAvailable: true,
+    instructions:[
+        {
             videoUrl:"/sizzlie/cut-chicken.mp4",
             description:"cut chicken",
         },
@@ -26,17 +51,6 @@ export const recipes: Recipe[] = [{
     ]
   },
   {
-    id: 2,
-    title: "Chicken Tikka",
-    imgSrc: "/sizzlie/chicken-tikka.jpg",
-    description: "A flavorful Indian dish of marinated chicken pieces grilled to perfection.",
-    currency: "$",
-    price: 10.20,
-    rating: 4.8,
-    isAvailable: true,
-    instructions:[]
-  },
-  {
     id: 3,
     title: "Lasagna",
     imgSrc: "/sizzlie/lasagna.jpg",
@@ -45,7 +59,21 @@ export const recipes: Recipe[] = [{
     price: 8.99,
     rating: 4.8,
     isAvailable: true,
-    instructions:[]
+    instructions:[
+        {
+            videoUrl:"/sizzlie/melt-cheese.mp4",
+            description:"melt cheese",
+        },
+        {
+            videoUrl:"/sizzlie/add-sauce.mp4",
+            description:"add seasoning",
+        },
+        {
+            videoUrl:"/sizzlie/put-in-over.mp4",
+            description:"put in oven",
+            time: 5
+        },
+    ]
   },
   {
     id: 4,
@@ -56,5 +84,19 @@ export const recipes: Recipe[] = [{
     price: 5,
     rating: 4.8,
     isAvailable: false,
-    instructions:[]
+    instructions:[
+        {
+            videoUrl:"/sizzlie/cut-chicken.mp4",
+            description:"cut chicken",
+        },
+        {
+            videoUrl:"/sizzlie/add-seasoning.mp4",
+            description:"add seasoning",
+        },
+        {
+            videoUrl:"/sizzlie/put-in-over.mp4",
+            description:"put in oven",
+            time: 5
+        },
+    ]
   }]

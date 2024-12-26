@@ -7,6 +7,7 @@ import Recipe from "../model/recipe";
 
 
 export const RecipeInstruction: React.FC<{recipe: Recipe}> = ({recipe}) => {
+    console.log(recipe)
     const [activeTimer, setActiveTimer] = useState<number | null>(null);
     const [timeLeft, setTimeLeft] = useState<number | null>(null);
 
