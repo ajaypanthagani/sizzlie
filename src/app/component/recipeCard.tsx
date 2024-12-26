@@ -8,6 +8,7 @@ import Recipe from "../model/recipe";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { addToCart, removeFromCart } from "../redux/cartSlice";
+import Link from "next/link";
 
 const MAX_DESCRIPTION_LENGTH = 100; // Maximum characters for description
 
@@ -46,6 +47,7 @@ const RecipeCard: React.FC<Recipe> = (recipe: Recipe) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 flex flex-col h-full">
+      <Link href={recipe.isAvailable ? `/recipe/${recipe.id}` : "#"}></Link>
       {/* Image Section */}
       <div className="relative w-full h-48">
         <Image
