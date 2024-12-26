@@ -6,7 +6,7 @@ const HeroBanner: React.FC = () => {
       {/* Video Background */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover"
-        src="/sizzlie/hero-1.mp4" // Replace with your video path
+        src="/hero-1.mp4" // Replace with your video path
         autoPlay
         loop
         muted
