@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Frec",
+  title: "Sizzlie",
   description: "easy to make recipe kit",
 };
 
