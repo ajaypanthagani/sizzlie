@@ -17,7 +17,7 @@ export const RecipeInstruction: React.FC<{recipe: Recipe}> = ({recipe}) => {
     };
 
     const playAlarm = () => {
-    const audio = new Audio("/sizzlie/alarm.mp3"); // Path to your alarm sound
+    const audio = new Audio("/alarm.mp3"); // Path to your alarm sound
     audio.play().catch((error) => console.error("Error playing alarm:", error));
     };
 
