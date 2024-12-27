@@ -14,14 +14,7 @@ const Feed: React.FC<FeedProps> = ({recipes}) => {
                 {recipes.map((recipe, index) => (
                 <RecipeCard
                 key={index}
-                id={recipe.id}
-                videoSrc={recipe.videoSrc}
-                title={recipe.title}
-                description={recipe.description}
-                currency={recipe.currency}
-                price={recipe.price}
-                rating={recipe.rating}
-                ingredients={[]}
+                recipe={recipe}
                 />
             
             ))}

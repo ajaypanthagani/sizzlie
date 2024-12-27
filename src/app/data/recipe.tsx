@@ -41,6 +41,13 @@ export const recipes: Recipe[] = [
         isAvailable: true,
       },
     ],
+    instructions: [
+      { id: 1, description: "Boil the pasta in salted water for about 10-12 minutes until al dente." },
+      { id: 2, description: "In a pan, sauté onions and pepper with olive oil until golden brown." },
+      { id: 3, description: "Add cheese and stir until melted, creating a creamy sauce." },
+      { id: 4, description: "Drain pasta and mix it with the sauce." },
+      { id: 5, description: "Shave fresh truffles on top before serving." },
+    ],
   },
   {
     id: 2,
@@ -82,6 +89,12 @@ export const recipes: Recipe[] = [
         isAvailable: true,
       },
     ],
+    instructions: [
+      { id: 1, description: "Marinate the chicken with yogurt, oil, and spices for 2-4 hours." },
+      { id: 2, description: "Preheat the grill to medium-high heat." },
+      { id: 3, description: "Skewer the marinated chicken and grill for about 10-15 minutes until fully cooked." },
+      { id: 4, description: "Serve hot with a drizzle of oil and lemon juice." },
+    ],
   },
   {
     id: 3,
@@ -113,6 +126,12 @@ export const recipes: Recipe[] = [
         isAvailable: true,
       },
     ],
+    instructions: [
+      { id: 1, description: "Cook the lasagna sheets according to package instructions." },
+      { id: 2, description: "Layer cooked pasta, marinara sauce, cheese, and ground meat (if using) in a baking dish." },
+      { id: 3, description: "Repeat layers and top with cheese." },
+      { id: 4, description: "Bake in a preheated oven at 375°F (190°C) for 30 minutes." },
+    ],
   },
   {
     id: 4,
@@ -129,7 +148,7 @@ export const recipes: Recipe[] = [
         currency: "$",
         price: 2,
         imgSrc: "/chicken.jpg",
-        description: "fresh pepper",
+        description: "fresh chicken",
         quantity: "10gms",
         isAvailable: true,
       },
@@ -144,8 +163,13 @@ export const recipes: Recipe[] = [
         isAvailable: true,
       },
     ],
+    instructions: [
+      { id: 1, description: "Prepare dough by mixing flour, water, and a pinch of salt." },
+      { id: 2, description: "Mix chicken, cheese, and spices for the filling." },
+      { id: 3, description: "Fill the dough with the chicken-cheese mixture and shape into dumplings." },
+      { id: 4, description: "Steam for about 15-20 minutes until cooked through." },
+    ],
   },
-  // Newly generated recipes (videoSrc left empty)
   {
     id: 5,
     title: "Cheese & Pepper Omelette",
@@ -185,6 +209,13 @@ export const recipes: Recipe[] = [
         quantity: "40gms",
         isAvailable: true,
       },
+    ],
+    instructions: [
+      { id: 1, description: "Whisk the eggs and season with salt and pepper." },
+      { id: 2, description: "In a heated pan, sauté onions until translucent." },
+      { id: 3, description: "Pour the egg mixture into the pan and cook for 2 minutes." },
+      { id: 4, description: "Add cheese and pepper, then fold the omelette." },
+      { id: 5, description: "Cook until cheese is melted and eggs are fully cooked." },
     ],
   },
   {
@@ -227,6 +258,13 @@ export const recipes: Recipe[] = [
         isAvailable: true,
       },
     ],
+    instructions: [
+      { id: 1, description: "Cut chicken into strips and season with salt and pepper." },
+      { id: 2, description: "Heat oil in a pan and stir-fry the chicken for 5-7 minutes." },
+      { id: 3, description: "Add chopped peppers and cook until tender." },
+      { id: 4, description: "Add a spicy sauce or chili paste and stir to combine." },
+      { id: 5, description: "Serve hot with rice or noodles." },
+    ],
   },
   {
     id: 7,
@@ -257,6 +295,12 @@ export const recipes: Recipe[] = [
         quantity: "2gms",
         isAvailable: true,
       },
+    ],
+    instructions: [
+      { id: 1, description: "Butter two slices of bread on one side." },
+      { id: 2, description: "Place cheese between the slices, buttered side out." },
+      { id: 3, description: "Grill on a medium heat until golden brown on both sides." },
+      { id: 4, description: "Sprinkle black pepper on top before serving." },
     ],
   },
   {
@@ -299,6 +343,12 @@ export const recipes: Recipe[] = [
         isAvailable: true,
       },
     ],
+    instructions: [
+      { id: 1, description: "Cut a pocket into the chicken breasts." },
+      { id: 2, description: "Stuff the chicken with mozzarella cheese." },
+      { id: 3, description: "Sear the chicken in olive oil for 3-4 minutes on each side." },
+      { id: 4, description: "Finish cooking in the oven for 20 minutes at 375°F." },
+    ],
   },
   {
     id: 9,
@@ -330,6 +380,12 @@ export const recipes: Recipe[] = [
         isAvailable: true,
       },
     ],
+    instructions: [
+      { id: 1, description: "Prepare dough with flour, water, and a pinch of salt." },
+      { id: 2, description: "Chop vegetables and mix with cheese for the filling." },
+      { id: 3, description: "Fill the dough and shape it into small dumplings." },
+      { id: 4, description: "Steam for 15-20 minutes until the dough is tender and cooked." },
+    ],
   },
   {
     id: 10,
@@ -360,6 +416,12 @@ export const recipes: Recipe[] = [
         quantity: "10gms",
         isAvailable: true,
       },
+    ],
+    instructions: [
+      { id: 1, description: "Prepare the pizza dough and spread it out." },
+      { id: 2, description: "Spread marinara sauce on top of the dough." },
+      { id: 3, description: "Sprinkle mozzarella cheese and top with pepperoni slices." },
+      { id: 4, description: "Bake at 475°F for 10-12 minutes until golden and crispy." },
     ],
   },
 ];

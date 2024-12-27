@@ -1,4 +1,5 @@
 import Ingredient from "./ingredient";
+import Instruction from "./instruction";
 
 // model/recipe.ts
 export default interface Recipe {
@@ -9,6 +10,7 @@ export default interface Recipe {
     currency: string;
     price: number;
     rating: number;
-    ingredients: Ingredient[];  // New instructions field
+    ingredients: Ingredient[];
+    instructions: Instruction[];
 }
   

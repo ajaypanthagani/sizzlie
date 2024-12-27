@@ -14,7 +14,12 @@ const extractVideoId = (url: string): string | null => {
   return match ? match[1] : null;
 };
 
-const RecipeCard: React.FC<Recipe> = (recipe: Recipe) => {
+interface RecipeCardProps {
+  recipe: Recipe;
+}
+
+const RecipeCard: React.FC<RecipeCardProps> = (props: RecipeCardProps) => {
+  const recipe = props.recipe
 
   // Truncate the description
   const truncatedDescription =
