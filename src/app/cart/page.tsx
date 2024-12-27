@@ -11,7 +11,7 @@ const CartPage: React.FC = () => {
   const dispatch = useDispatch();
 
   const totalPrice = cartItems.reduce(
-    (acc, item) => acc + item.recipe.price * item.quantity,
+    (acc, item) => acc + item.ingredient.price * item.quantity,
     0
   );
 
@@ -34,12 +34,12 @@ const CartPage: React.FC = () => {
                     <Image
                       width={200}
                       height={200}
-                      src={item.recipe.imgSrc}
-                      alt={item.recipe.title}
+                      src={item.ingredient.imgSrc}
+                      alt={item.ingredient.title}
                       className="w-16 h-16 object-cover rounded-lg"
                     />
                     <h2 className="font-semibold text-lg text-gray-800">
-                      {item.recipe.title}
+                      {item.ingredient.title}
                     </h2>
                   </div>
                 </div>
@@ -48,13 +48,13 @@ const CartPage: React.FC = () => {
                 <div className="flex items-center justify-between mt-4">
                   {/* Price */}
                   <p className="font-bold text-lg text-gray-900">
-                    {item.recipe.currency} {(item.quantity * item.recipe.price).toFixed(2)}
+                    {item.ingredient.currency} {(item.quantity * item.ingredient.price).toFixed(2)}
                   </p>
 
                   {/* Controllers */}
                   <div className="flex items-center border-2 rounded border-red-300 bg-red-200 hover:bg-red-300">
                     <button
-                      onClick={() => dispatch(removeFromCart(item.recipe.id))}
+                      onClick={() => dispatch(removeFromCart(item.ingredient.id))}
                       className="font-semibold text-red-500 text-lg w-10 h-10 flex items-center justify-center hover:text-red-600 transition duration-200"
                     >
                       -
@@ -63,7 +63,7 @@ const CartPage: React.FC = () => {
                       {item.quantity}
                     </span>
                     <button
-                      onClick={() => dispatch(addToCart(item.recipe))}
+                      onClick={() => dispatch(addToCart(item.ingredient))}
                       className="font-semibold text-red-500 text-lg w-10 h-10 flex items-center justify-center hover:text-red-600 transition duration-200"
                     >
                       +
@@ -81,7 +81,7 @@ const CartPage: React.FC = () => {
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold text-gray-700">Total</h2>
               <p className="font-bold text-xl text-gray-900">
-                {cartItems[0].recipe.currency} {totalPrice.toFixed(2)}
+                {cartItems[0].ingredient.currency} {totalPrice.toFixed(2)}
               </p>
             </div>
             <button

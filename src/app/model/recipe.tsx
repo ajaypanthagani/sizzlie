@@ -1,3 +1,5 @@
+import Ingredient from "./ingredient";
+
 // model/recipe.ts
 export default interface Recipe {
     id: number;
@@ -7,7 +9,6 @@ export default interface Recipe {
     currency: string;
     price: number;
     rating: number;
-    isAvailable: boolean;
-    instructions: { videoUrl: string; description: string; time?: number }[];  // New instructions field
-  }
+    ingredients: Ingredient[];  // New instructions field
+}
   

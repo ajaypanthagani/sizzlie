@@ -1,9 +1,9 @@
 // redux/cartSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Recipe from "../model/recipe";
+import Ingredient from "../model/ingredient";
 
 interface CartState {
-  items: { recipe: Recipe; quantity: number }[]; // Store items with quantity
+  items: { ingredient: Ingredient; quantity: number }[]; // Store items with quantity
 }
 
 const initialState: CartState = {
@@ -14,10 +14,10 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<Recipe>) => {
+    addToCart: (state, action: PayloadAction<Ingredient>) => {
       console.log(action.payload.id)
       const existingItem = state.items.find(
-        (item) => item.recipe.id === action.payload.id
+        (item) => item.ingredient.id === action.payload.id
       );
 
       if (existingItem) {
@@ -25,21 +25,21 @@ const cartSlice = createSlice({
         existingItem.quantity += 1;
       } else {
         // Otherwise, add the item with quantity 1
-        state.items.push({ recipe: action.payload, quantity: 1 });
+        state.items.push({ ingredient: action.payload, quantity: 1 });
       }
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
       const itemId = action.payload;
 
       const existingItem = state.items.find(
-        (item) => item.recipe.id === itemId
+        (item) => item.ingredient.id === itemId
       );
 
       if (existingItem) {
         if (existingItem.quantity > 1) {
           existingItem.quantity -= 1;
         } else {
-          state.items = state.items.filter((item) => item.recipe.id !== itemId);
+          state.items = state.items.filter((item) => item.ingredient.id !== itemId);
         }
       }
     }

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Recipe from "../model/recipe";
+import IngredientCard from "./ingredient";
 
 export const RecipeInstruction: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
   return (
@@ -16,6 +17,16 @@ export const RecipeInstruction: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
             allow="clipboard-write; encrypted-media; gyroscope;"
             referrerPolicy="strict-origin-when-cross-origin"
           ></iframe>
+        </div>
+
+        {/* Ingredient Section */}
+        <div className="flex flex-col overflow-y-auto lg:h-full h-52 lg:h-[calc(100vh-12rem)] gap-4 border-red-300 border-2 rounded p-2">
+          {/* Limit height to the screen height minus some padding */}
+          {recipe.ingredients.map((ingredient) => (
+            <div key={ingredient.id}>
+              <IngredientCard ingredient={ingredient} />
+            </div>
+          ))}
         </div>
       </div>
     </div>

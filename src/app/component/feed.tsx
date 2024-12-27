@@ -21,8 +21,7 @@ const Feed: React.FC<FeedProps> = ({recipes}) => {
                 currency={recipe.currency}
                 price={recipe.price}
                 rating={recipe.rating}
-                isAvailable={recipe.isAvailable}
-                instructions={[]}
+                ingredients={[]}
                 />
             
             ))}
