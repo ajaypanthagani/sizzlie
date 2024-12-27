@@ -1,6 +1,6 @@
 import { recipes } from "@/app/data/recipe";
 import React from "react";
-import { RecipeInstruction } from "@/app/component/recipeInstruction";
+import { IngredientSelector } from "@/app/component/ingredientSelector";
 
 // Correctly typed `generateStaticParams` for Next.js 13+
 export async function generateStaticParams(): Promise<{ id: string }[]> {
@@ -16,11 +16,11 @@ export async function generateStaticParams(): Promise<{ id: string }[]> {
 }
 
 
-interface RecipePageProps {
+interface IngredientSelectionProps {
   params: Promise<{ id: string }>
 }
 
-const RecipeInstructionsPage: React.FC<RecipePageProps> = async ({params}) => {
+const IngredientSelectionPage: React.FC<IngredientSelectionProps> = async ({params}) => {
   const { id } = await params;
 
   // Parse the id to a number
@@ -30,10 +30,10 @@ const RecipeInstructionsPage: React.FC<RecipePageProps> = async ({params}) => {
   const recipe = recipes.find((recipe) => recipe.id === recipeId);
 
   if (recipe) {
-    return <RecipeInstruction recipe={recipe} />;
+    return <IngredientSelector recipe={recipe} />;
   }
 
   return <div>No recipe found</div>;
 };
 
-export default RecipeInstructionsPage;
+export default IngredientSelectionPage;

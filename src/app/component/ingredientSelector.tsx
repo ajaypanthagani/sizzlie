@@ -6,15 +6,16 @@ import IngredientCard from "./ingredient";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cartSlice"; // Import the action from your redux slice
 import { RootState } from "../redux/store";
-import { FaShoppingCart } from "react-icons/fa"; // Import cart icon
+import { FaShoppingCart, FaList } from "react-icons/fa"; // Import cart icon
+import { useRouter } from 'next/navigation';
 
 export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
+    const router = useRouter();
   // State to track removed ingredients (already have at home)
   const [removedIngredients, setRemovedIngredients] = useState<Set<number>>(new Set());
 
   // State for quantity slider (servings)
   const [quantity, setQuantity] = useState(1);
-
   const dispatch = useDispatch();
 
   // Redux cart items
@@ -49,26 +50,19 @@ export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => 
         }
       }
     });
+
+    router.push('/cart'); // Replace with your desired route
   };
 
   return (
     <div className="z-0 p-4 fixed inset-0 h-screen bg-gray-100 overflow-y-auto">
-      <div className="mt-32 lg:mt-16 md:mt-16 grid grid-cols-1 lg:grid-cols-3 gap-4 lg:p-10">
-        {/* Video container spans two columns on large screens */}
-        <div className="relative w-full col-span-1 lg:col-span-2 pb-[56.25%]">
-          <iframe
-            className="absolute top-0 left-0 w-full h-full rounded-md"
-            src={recipe.videoSrc}
-            title="YouTube video player"
-            allow="clipboard-write; encrypted-media; gyroscope;"
-            referrerPolicy="strict-origin-when-cross-origin"
-          ></iframe>
-        </div>
+      <div className="mt-32 lg:mt-16 md:mt-16 grid grid-cols-1 lg:grid-cols-1 gap-4 lg:p-10">
+        <h1 className="font-bold text-large text-gray-800">Select ingredients for: {recipe.title}</h1>
 
         {/* Red-bordered container for ingredients */}
         <div className="border-red-300 border-2 rounded p-4 flex flex-col h-full overflow-hidden">
           {/* Ingredients List */}
-          <div className="flex flex-col overflow-y-auto mb-4 flex-grow gap-4 h-48">
+          <div className="flex flex-col overflow-y-auto mb-4 flex-grow gap-4 h-72">
             {recipe.ingredients.map((ingredient) => (
               <div key={ingredient.id}>
                 <IngredientCard
@@ -81,7 +75,7 @@ export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => 
           </div>
 
           {/* Quantity Slider */}
-          <div className="mb-4">
+          <div className="mb-1">
             <input
               type="range"
               id="ingredient-quantity"
@@ -103,13 +97,13 @@ export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => 
           </div>
 
           {/* Add to Cart Button */}
-          <div className="p-1 mt-2">
+          <div className="p-1 mt-1">
             <button
               className="bg-red-600 hover:bg-red-700 text-white w-full py-2 rounded flex justify-center items-center"
               onClick={handleAddToCart}
             >
               <FaShoppingCart className="text-white mr-2" />
-              Add {quantity} to Cart
+              Add {quantity} servings to Cart
             </button>
           </div>
         </div>

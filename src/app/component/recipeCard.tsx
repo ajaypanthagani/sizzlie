@@ -33,7 +33,7 @@ const RecipeCard: React.FC<RecipeCardProps> = (props: RecipeCardProps) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 flex flex-col h-full">
-    <Link href={`/recipe/${recipe.id}`}>
+    <Link href={`/recipe/${recipe.id}/ingredientSelection`}>
       {/* Video Section */}
       <div className="relative w-full h-0 pb-[56.25%]">  {/* 16:9 aspect ratio */}
       <Image
