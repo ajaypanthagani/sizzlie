@@ -3,7 +3,7 @@ import Recipe from "../model/recipe";
 export const recipes: Recipe[] = [{
     id: 1,
     title: "Truffle Pasta",
-    imgSrc: "/truffle-pasta.jpg",
+    videoSrc: "https://www.youtube.com/embed/s0iPl_aeii0?si=onH382rvcuDmDlFN",
     description: "A luxurious pasta dish with freshly shaved truffles.",
     currency: "$",
     price: 10.5,
@@ -28,7 +28,7 @@ export const recipes: Recipe[] = [{
   {
     id: 2,
     title: "Chicken Tikka",
-    imgSrc: "/chicken-tikka.jpg",
+    videoSrc: "https://www.youtube.com/embed/8L7V1eTaTnw?si=jwdhx6HnSFMbK1qk",    
     description: "A flavorful Indian dish of marinated chicken pieces grilled to perfection.",
     currency: "$",
     price: 10.20,
@@ -53,7 +53,7 @@ export const recipes: Recipe[] = [{
   {
     id: 3,
     title: "Lasagna",
-    imgSrc: "/lasagna.jpg",
+    videoSrc: "https://www.youtube.com/embed/BDFaPIZso68?si=Le3ecVtHUcY_Tt1a",
     description: "A layered Italian dish made with pasta, meat, cheese, and marinara sauce, baked to perfection.",
     currency: "$",
     price: 8.99,
@@ -78,7 +78,7 @@ export const recipes: Recipe[] = [{
   {
     id: 4,
     title: "Momo - steamed",
-    imgSrc: "/momo.jpg",
+    videoSrc: "https://www.youtube.com/embed/4VQQfm-ifjc?si=6SNluSdZHQninHJa",
     description: "A steamed dumpling filled with meat or vegetables, popular in Tibetan and Nepalese cuisine",
     currency: "$",
     price: 5,

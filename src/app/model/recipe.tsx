@@ -1,7 +1,7 @@
 // model/recipe.ts
 export default interface Recipe {
     id: number;
-    imgSrc: string;
+    videoSrc: string;
     title: string;
     description: string;
     currency: string;
