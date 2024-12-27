@@ -42,7 +42,7 @@ export const recipes: Recipe[] = [
       },
     ],
     instructions: [
-      { id: 1, description: "Boil the pasta in salted water for about 10-12 minutes until al dente." },
+      { id: 1, description: "Boil the pasta in salted water for about 10-12 minutes until al dente.", timer: 10 },
       { id: 2, description: "In a pan, sauté onions and pepper with olive oil until golden brown." },
       { id: 3, description: "Add cheese and stir until melted, creating a creamy sauce." },
       { id: 4, description: "Drain pasta and mix it with the sauce." },
