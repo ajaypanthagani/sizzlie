@@ -16,6 +16,7 @@ export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => 
 
   // State for quantity slider (servings)
   const [quantity, setQuantity] = useState(1);
+  const [addedToCart, setAddedToCart] = useState(false);
   const dispatch = useDispatch();
 
   // Redux cart items
@@ -51,7 +52,7 @@ export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => 
       }
     });
 
-    router.push('/cart'); // Replace with your desired route
+    setAddedToCart(true)
   };
 
   return (
@@ -60,7 +61,7 @@ export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => 
         <h1 className="font-bold text-large text-gray-800">Select ingredients for: {recipe.title}</h1>
 
         {/* Red-bordered container for ingredients */}
-        <div className="border-red-300 border-2 rounded p-4 flex flex-col h-full overflow-hidden">
+        <div className="rounded p-4 flex flex-col h-full overflow-hidden">
           {/* Ingredients List */}
           <div className="flex flex-col overflow-y-auto mb-4 flex-grow gap-4 h-72">
             {recipe.ingredients.map((ingredient) => (
@@ -96,15 +97,30 @@ export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => 
             </div>
           </div>
 
-          {/* Add to Cart Button */}
-          <div className="p-1 mt-1">
+          <div className="flex-col">
+          {addedToCart ? (
             <button
-              className="bg-red-600 hover:bg-red-700 text-white w-full py-2 rounded flex justify-center items-center"
-              onClick={handleAddToCart}
+            className="bg-blue-600 hover:bg-blue-500 text-white w-full py-2 rounded flex justify-center items-center"
+            onClick={()=>{router.push(`/cart`)}}
             >
-              <FaShoppingCart className="text-white mr-2" />
-              Add {quantity} servings to Cart
+                Go to Cart
             </button>
+        ) : (
+          <button
+            className="bg-red-500 hover:bg-red-300 text-white w-full py-2 rounded flex justify-center items-center"
+            onClick={handleAddToCart}
+          >
+            <FaShoppingCart className="text-white mr-2" />
+            Add {quantity} servings to Cart
+          </button>
+        )}
+
+        <button
+        className="bg-gray-500 hover:bg-gray-500 text-white w-full py-2 rounded flex justify-center items-center mt-1"
+        onClick={()=>{router.push(`/recipe/${recipe.id}/instructions`)}}
+        >
+        See cooking instructions
+        </button>
           </div>
         </div>
       </div>
