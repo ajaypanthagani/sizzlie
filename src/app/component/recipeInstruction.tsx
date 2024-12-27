@@ -111,7 +111,7 @@ export const RecipeInstruction: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
           ></iframe>
         </div>
 
-        <div className="carousel-container mt-6 p-4 bg-gray-800 rounded-lg shadow-lg">
+        <div className="carousel-container p-4 bg-gray-800 rounded-lg shadow-lg">
         {/* Step Display */}
         <div className="step-content text-center text-white">
           <h5 className="text-xl font-semibold mb-2">Step {recipe.instructions[currentStep].id}</h5>
