@@ -6,18 +6,15 @@ import Ingredient from "../model/ingredient";
 
 interface IngredientCardProps {
   ingredient: Ingredient;
-  onRemove: (ingredientId: number) => void;  // Callback function to handle removal
-  isRemoved: boolean;  // Whether the ingredient has been marked as removed
+  onRemove: () => void; // Callback to handle removal
+  isRemoved: boolean; // Whether the ingredient is removed or already owned
 }
 
-const IngredientCard: React.FC<IngredientCardProps> = (props: IngredientCardProps) => {
-  const { ingredient, onRemove, isRemoved } = props;
-
-  // Handle marking an ingredient as removed (i.e., already owned by the user)
-  const handleRemoveIngredient = () => {
-    onRemove(ingredient.id);  // This will mark the ingredient as removed
-  };
-
+const IngredientCard: React.FC<IngredientCardProps> = ({
+  ingredient,
+  onRemove,
+  isRemoved,
+}) => {
   return (
     <div className="flex flex-row p-2 bg-white shadow-md rounded-lg transition transform justify-between">
       {/* Top Section */}
@@ -46,19 +43,19 @@ const IngredientCard: React.FC<IngredientCardProps> = (props: IngredientCardProp
           {ingredient.currency} {(ingredient.price).toFixed(2)} each
         </p>
 
-        {/* Show the 'Remove' button if the ingredient is not marked as removed */}
+        {/* Show the 'Remove' button if the ingredient is not already removed */}
         {isRemoved ? (
           <button
-            onClick={handleRemoveIngredient}
-            className="bg-gray-500 text-white px-8 py-2 rounded-md cursor-not-allowed opacity-50"
+            onClick={onRemove}
+            className="bg-gray-500 text-white px-5 py-1 rounded-md cursor-not-allowed opacity-50"
             disabled
           >
-            Already Have
+            Removed
           </button>
         ) : (
           <button
-            onClick={handleRemoveIngredient}
-            className={`bg-red-500 text-white px-8 py-2 rounded-md hover:bg-red-600 transition duration-200`}
+            onClick={onRemove}
+            className="bg-red-500 text-white px-5 py-1 rounded-md hover:bg-red-600 transition duration-200"
           >
             Remove
           </button>

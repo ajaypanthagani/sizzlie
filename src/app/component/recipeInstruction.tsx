@@ -3,16 +3,30 @@
 import React, { useState } from "react";
 import Recipe from "../model/recipe";
 import IngredientCard from "./ingredient";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/cartSlice";  // Import the action from your redux slice
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/cartSlice"; // Import the action from your redux slice
+import { RootState } from "../redux/store";
+import { FaShoppingCart } from "react-icons/fa"; // Import cart icon
 
 export const RecipeInstruction: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
-  // Local state to track which ingredients are removed or already owned
+  // State to track removed ingredients (already have at home)
   const [removedIngredients, setRemovedIngredients] = useState<Set<number>>(new Set());
-  
+
+  // State for quantity slider (servings)
+  const [quantity, setQuantity] = useState(1);
+
   const dispatch = useDispatch();
 
-  // Toggle ingredient removal (if the user already has it)
+  // Redux cart items
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+
+  // Track the quantity of each ingredient in the cart
+  const cartIngredientQuantities = cartItems.reduce((acc, item) => {
+    acc[item.ingredient.id] = item.quantity;
+    return acc;
+  }, {} as { [key: number]: number });
+
+  // Toggle removed ingredient (mark as already have it at home)
   const handleRemoveIngredient = (ingredientId: number) => {
     setRemovedIngredients(prevState => {
       const newState = new Set(prevState);
@@ -25,11 +39,14 @@ export const RecipeInstruction: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
     });
   };
 
-  // Handle adding remaining ingredients to the cart
+  // Handle adding ingredients to the cart
   const handleAddToCart = () => {
-    recipe.ingredients.forEach(ingredient => {
+    // Add ingredients that are not removed
+    recipe.ingredients.forEach((ingredient) => {
       if (!removedIngredients.has(ingredient.id)) {
-        dispatch(addToCart(ingredient));  // Add only non-removed ingredients to the cart
+        for (let i = 0; i < quantity; i++) {
+          dispatch(addToCart(ingredient)); // Add ingredient to the cart
+        }
       }
     });
   };
@@ -48,25 +65,53 @@ export const RecipeInstruction: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
           ></iframe>
         </div>
 
-        <div className=" border-red-300 border-2 rounded p-2">
-            <div className="flex flex-col overflow-y-auto lg:h-full h-52 lg:h-[calc(100vh-12rem)] gap-4 mb-4">
+        {/* Red-bordered container for ingredients */}
+        <div className="border-red-300 border-2 rounded p-4 flex flex-col h-full overflow-hidden">
+          {/* Ingredients List */}
+          <div className="flex flex-col overflow-y-auto mb-4 flex-grow gap-4 h-48">
             {recipe.ingredients.map((ingredient) => (
-                <div key={ingredient.id}>
-                <IngredientCard 
-                    ingredient={ingredient} 
-                    onRemove={() => handleRemoveIngredient(ingredient.id)} 
-                    isRemoved={removedIngredients.has(ingredient.id)} 
+              <div key={ingredient.id}>
+                <IngredientCard
+                  ingredient={ingredient}
+                  onRemove={() => handleRemoveIngredient(ingredient.id)}
+                  isRemoved={removedIngredients.has(ingredient.id)}
                 />
-                </div>
+              </div>
             ))}
-            </div>
+          </div>
 
-            {/* Sticky "Add to Cart" Button */}
-            <div className="p-1 mt-2">
-            <button className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded" onClick={handleAddToCart}>
-                Add to Cart
-            </button>
+          {/* Quantity Slider */}
+          <div className="mb-4">
+            <input
+              type="range"
+              id="ingredient-quantity"
+              min="1"
+              max="10"
+              step="1"
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+              className="w-full mt-2 h-2 bg-gradient-to-r from-red-500 to-red-700 rounded-full appearance-none"
+              style={{
+                backgroundSize: `${(quantity / 10) * 100}% 100%`,
+                transition: 'background-size 0.25s ease'
+              }}
+            />
+            <div className="flex justify-between text-sm text-gray-700">
+              <span>1</span>
+              <span>10</span>
             </div>
+          </div>
+
+          {/* Add to Cart Button */}
+          <div className="p-1 mt-2">
+            <button
+              className="bg-red-600 hover:bg-red-700 text-white w-full py-2 rounded flex justify-center items-center"
+              onClick={handleAddToCart}
+            >
+              <FaShoppingCart className="text-white mr-2" />
+              Add {quantity} to Cart
+            </button>
+          </div>
         </div>
       </div>
     </div>
