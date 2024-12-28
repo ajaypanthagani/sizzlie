@@ -5,12 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { addToCart, removeFromCart } from "../redux/cartSlice";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 const CartPage: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.ingredient.price * item.quantity,
@@ -94,6 +92,7 @@ const CartPage: React.FC = () => {
           </div>
         )}
       </div>
+      <div className="h-10"></div>
     </div>
   );
 };

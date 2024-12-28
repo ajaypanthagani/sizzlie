@@ -13,7 +13,6 @@ interface IngredientCardProps {
 const IngredientCard: React.FC<IngredientCardProps> = ({
   ingredient,
   onRemove,
-  isRemoved,
 }) => {
   return (
     <div className="flex flex-row p-2 bg-white shadow-md rounded-lg transition transform justify-between">

@@ -3,9 +3,8 @@
 import React, { useState } from "react";
 import Recipe from "../model/recipe";
 import IngredientCard from "./ingredient";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice"; // Import the action from your redux slice
-import { RootState } from "../redux/store";
 import { FaShoppingCart, FaUndoAlt } from "react-icons/fa"; // Import cart icon
 import { useRouter } from 'next/navigation';
 
@@ -19,14 +18,6 @@ export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => 
   const [addedToCart, setAddedToCart] = useState(false);
   const dispatch = useDispatch();
 
-  // Redux cart items
-  const cartItems = useSelector((state: RootState) => state.cart.items);
-
-  // Track the quantity of each ingredient in the cart
-  const cartIngredientQuantities = cartItems.reduce((acc, item) => {
-    acc[item.ingredient.id] = item.quantity;
-    return acc;
-  }, {} as { [key: number]: number });
 
   // Toggle removed ingredient (mark as already have it at home)
   const handleRemoveIngredient = (ingredientId: number) => {
@@ -60,7 +51,7 @@ export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => 
   }
 
   return (
-    <div className="z-0 p-4 fixed inset-0 h-screen bg-gray-100 overflow-y-auto">
+    <div className="z-0 p-2 fixed inset-0 h-screen bg-gray-100 overflow-y-auto">
       <div className="mt-32 lg:mt-16 md:mt-16 grid grid-cols-1 lg:grid-cols-1 gap-4 lg:p-10">
         <h1 className="font-bold text-large text-gray-800">Select ingredients for: {recipe.title}</h1> 
 

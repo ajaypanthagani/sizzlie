@@ -35,15 +35,7 @@ const SearchPage: React.FC = () => {
             {filteredResults.map((recipe) => (
                 <RecipeCard
                     key={recipe.id}
-                    id={recipe.id}
-                    imgSrc={recipe.imgSrc}
-                    title={recipe.title}
-                    description={recipe.description}
-                    currency={recipe.currency}
-                    price={recipe.price}
-                    rating={recipe.rating}
-                    isAvailable={recipe.isAvailable}
-                    instructions={[]}
+                    recipe={recipe}
                 />
             ))}
         </div>
