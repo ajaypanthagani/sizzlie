@@ -43,23 +43,12 @@ const IngredientCard: React.FC<IngredientCardProps> = ({
           {ingredient.currency} {(ingredient.price).toFixed(2)} each
         </p>
 
-        {/* Show the 'Remove' button if the ingredient is not already removed */}
-        {isRemoved ? (
-          <button
+        <button
             onClick={onRemove}
-            className="bg-gray-500 text-white px-5 py-1 rounded-md cursor-not-allowed opacity-50"
-            disabled
+            className="px-2 py-1 border-2 rounded border-red-300 bg-red-200 hover:bg-red-300 text-md text-gray-900"
           >
-            Removed
+            I have it
           </button>
-        ) : (
-          <button
-            onClick={onRemove}
-            className="bg-red-500 text-white px-5 py-1 rounded-md hover:bg-red-600 transition duration-200"
-          >
-            Remove
-          </button>
-        )}
       </div>
     </div>
   );

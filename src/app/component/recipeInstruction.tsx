@@ -113,28 +113,21 @@ export const RecipeInstruction: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
 
         <div className="carousel-container p-4 bg-gray-800 rounded-lg shadow-lg">
         {/* Step Display */}
-        <div className="step-content text-center text-white">
+        <div className="step-content text-center text-white h-40 overflow-auto-y">
           <h5 className="text-xl font-semibold mb-2">Step {recipe.instructions[currentStep].id}</h5>
           <h4>{recipe.instructions[currentStep].description}</h4>
-
-          {/* Timer display if available */}
-          {recipe.instructions[currentStep].timer && (
-            <div className="timer flex justify-center items-center space-x-2 text-lg text-red-500 mt-2">
-              <FaClock />
-              <span>{recipe.instructions[currentStep].timer} seconds</span>
-            </div>
-          )}
         </div>
 
         {/* Carousel Controls */}
         <div className="flex justify-between mt-4">
-          <button
-            onClick={prevStep}
-            disabled={currentStep === 0}
-            className="bg-blue-500 text-white p-2 rounded-md disabled:opacity-50 transition-opacity"
-          >
-            <FaBackward></FaBackward>
-          </button>
+        <button
+        onClick={prevStep}
+        disabled={currentStep === 0}
+        className="bg-blue-500 text-white p-2 rounded-md disabled:opacity-50 transition-opacity w-12 h-12 flex items-center justify-center"
+        >
+        <FaBackward className="text-center" />
+        </button>
+
 
 
           {recipe.instructions[currentStep].timer && (
@@ -161,7 +154,7 @@ export const RecipeInstruction: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
           <button
             onClick={nextStep}
             disabled={currentStep === recipe.instructions.length - 1}
-            className="bg-blue-500 text-white p-2 rounded-md disabled:opacity-50 transition-opacity"
+            className="bg-blue-500 text-white p-2 rounded-md disabled:opacity-50 transition-opacity  w-12 h-12 text-center flex items-center justify-center"
           >
             <FaForward></FaForward>
           </button>

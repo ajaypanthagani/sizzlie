@@ -6,7 +6,7 @@ import IngredientCard from "./ingredient";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cartSlice"; // Import the action from your redux slice
 import { RootState } from "../redux/store";
-import { FaShoppingCart, FaList } from "react-icons/fa"; // Import cart icon
+import { FaShoppingCart, FaUndoAlt } from "react-icons/fa"; // Import cart icon
 import { useRouter } from 'next/navigation';
 
 export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
@@ -55,65 +55,88 @@ export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => 
     setAddedToCart(true)
   };
 
+  const resetItems = () => {
+    setRemovedIngredients(new Set())
+  }
+
   return (
     <div className="z-0 p-4 fixed inset-0 h-screen bg-gray-100 overflow-y-auto">
       <div className="mt-32 lg:mt-16 md:mt-16 grid grid-cols-1 lg:grid-cols-1 gap-4 lg:p-10">
-        <h1 className="font-bold text-large text-gray-800">Select ingredients for: {recipe.title}</h1>
+        <h1 className="font-bold text-large text-gray-800">Select ingredients for: {recipe.title}</h1> 
 
         {/* Red-bordered container for ingredients */}
         <div className="rounded p-4 flex flex-col h-full overflow-hidden">
+        <div className="flex justify-end p-1">
+            <button onClick={resetItems} className="flex items-center space-x-2 text-black">
+                <FaUndoAlt/>
+            </button>
+        </div>
+
           {/* Ingredients List */}
-          <div className="flex flex-col overflow-y-auto mb-4 flex-grow gap-4 h-72">
+          <div className="flex flex-col justify-center overflow-y-auto mb-4 flex-grow gap-4 h-72">
+            {removedIngredients.size == recipe.ingredients.length && (
+            <h1 className="text-center text-lg font-bold text-gray-800 justify-center">Wow you have everything needed for the recipe!</h1>
+            )}
+
             {recipe.ingredients.map((ingredient) => (
               <div key={ingredient.id}>
+                {!removedIngredients.has(ingredient.id) &&
                 <IngredientCard
                   ingredient={ingredient}
                   onRemove={() => handleRemoveIngredient(ingredient.id)}
                   isRemoved={removedIngredients.has(ingredient.id)}
-                />
+                />}
               </div>
             ))}
           </div>
 
-          {/* Quantity Slider */}
-          <div className="mb-1">
-            <input
-              type="range"
-              id="ingredient-quantity"
-              min="1"
-              max="10"
-              step="1"
-              value={quantity}
-              onChange={(e) => setQuantity(Number(e.target.value))}
-              className="w-full mt-2 h-2 bg-gradient-to-r from-red-500 to-red-700 rounded-full appearance-none"
-              style={{
-                backgroundSize: `${(quantity / 10) * 100}% 100%`,
-                transition: 'background-size 0.25s ease'
-              }}
-            />
-            <div className="flex justify-between text-sm text-gray-700">
-              <span>1</span>
-              <span>10</span>
+          {removedIngredients.size < recipe.ingredients.length && (
+            // Quantity Slider
+            <div className="mb-1">
+                <input
+                type="range"
+                id="ingredient-quantity"
+                min="1"
+                max="10"
+                step="1"
+                value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+                className="w-full mt-2 h-2 bg-gray-800 rounded-full appearance-none"
+                style={{
+                    backgroundSize: `${(quantity / 10) * 100}% 100%`,
+                    transition: 'background-size 0.25s ease'
+                }}
+                />
+                <div className="flex justify-between text-sm text-gray-700">
+                <span>1</span>
+                <span>10</span>
+                </div>
             </div>
-          </div>
+            )}
+
 
           <div className="flex-col">
-          {addedToCart ? (
-            <button
-            className="bg-blue-600 hover:bg-blue-500 text-white w-full py-2 rounded flex justify-center items-center"
-            onClick={()=>{router.push(`/cart`)}}
-            >
+
+          {removedIngredients.size < recipe.ingredients.length && (
+            addedToCart ? (
+                <button
+                className="bg-blue-600 hover:bg-blue-500 text-white w-full py-2 rounded flex justify-center items-center"
+                onClick={() => { router.push(`/cart`); }}
+                >
                 Go to Cart
-            </button>
-        ) : (
-          <button
-            className="bg-red-500 hover:bg-red-300 text-white w-full py-2 rounded flex justify-center items-center"
-            onClick={handleAddToCart}
-          >
-            <FaShoppingCart className="text-white mr-2" />
-            Add {quantity} servings to Cart
-          </button>
-        )}
+                </button>
+            ) : (
+                <button
+                className="border-2 rounded border-blue-300 w-full py-2 flex justify-center items-center bg-blue-500"
+                onClick={handleAddToCart}
+                >
+                <FaShoppingCart className="mr-2" />
+                Add {quantity} servings to Cart
+                </button>
+            )
+            )}
+
+          
 
         <button
         className="bg-gray-500 hover:bg-gray-500 text-white w-full py-2 rounded flex justify-center items-center mt-1"
