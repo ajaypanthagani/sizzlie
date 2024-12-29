@@ -160,6 +160,7 @@ export const RecipeInstruction: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
           </button>
         </div>
       </div>
+      <div className="h-40"></div>
       </div>
     </div>
   );

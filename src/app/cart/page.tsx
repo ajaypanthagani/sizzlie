@@ -92,7 +92,7 @@ const CartPage: React.FC = () => {
           </div>
         )}
       </div>
-      <div className="h-10"></div>
+      <div className="h-60"></div>
     </div>
   );
 };

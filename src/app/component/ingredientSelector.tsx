@@ -64,22 +64,27 @@ export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => 
         </div>
 
           {/* Ingredients List */}
-          <div className="flex flex-col justify-center overflow-y-auto mb-4 flex-grow gap-4 h-72">
-            {removedIngredients.size == recipe.ingredients.length && (
-            <h1 className="text-center text-lg font-bold text-gray-800 justify-center">Wow you have everything needed for the recipe!</h1>
+          <div className="flex flex-col justify-center overflow-y-auto mb-4 flex-grow max-h-96 gap-4">
+            {removedIngredients.size === recipe.ingredients.length && (
+                <h1 className="text-center text-lg font-bold text-gray-800 justify-center">Wow you have everything needed for the recipe!</h1>
             )}
 
-            {recipe.ingredients.map((ingredient) => (
-              <div key={ingredient.id}>
-                {!removedIngredients.has(ingredient.id) &&
-                <IngredientCard
-                  ingredient={ingredient}
-                  onRemove={() => handleRemoveIngredient(ingredient.id)}
-                  isRemoved={removedIngredients.has(ingredient.id)}
-                />}
-              </div>
-            ))}
-          </div>
+            <div className="flex flex-col overflow-y-auto max-h-full gap-4">
+                {recipe.ingredients.map((ingredient) => (
+                <div key={ingredient.id}>
+                    {!removedIngredients.has(ingredient.id) && (
+                    <IngredientCard
+                        ingredient={ingredient}
+                        onRemove={() => handleRemoveIngredient(ingredient.id)}
+                        isRemoved={removedIngredients.has(ingredient.id)}
+                    />
+                    )}
+                </div>
+                ))}
+            </div>
+            </div>
+
+
 
           {removedIngredients.size < recipe.ingredients.length && (
             // Quantity Slider
@@ -135,6 +140,7 @@ export const IngredientSelector: React.FC<{ recipe: Recipe }> = ({ recipe }) => 
         >
         See cooking instructions
         </button>
+        <div className="h-40"></div>
           </div>
         </div>
       </div>

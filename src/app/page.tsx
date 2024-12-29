@@ -19,7 +19,7 @@ const Home: React.FC = () => {
         <div className='mt-5'>
           <Feed recipes={recipes}/>
         </div>
-        <div className="h-10"></div>
+        <div className="h-40"></div>
       </div>
   );
 };
